@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.1'
+    }
+    tasks.withType(JavaCompile) { options.encoding = "UTF-8" }
+}
+
+apply plugin: 'android'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 23
+    }
+    lintOptions {
+              abortOnError false
+          }
+
+    signingConfigs {
+            myConfig{  
+                storeFile file("releasesig.keystore")
+                storePassword "JiDanKe2013"
+                keyAlias "release"
+                keyPassword "JiDanKe2013"
+            }  
+        }  
+
+    buildTypes{  
+            release {  
+                signingConfig  signingConfigs.myConfig 
+            }  
+        }  
+
+    sourceSets {
+       main {  
+                   manifest.srcFile 'AndroidManifest.xml'  
+                   java.srcDirs = ['src']  
+                   resources.srcDirs = ['src']  
+                   aidl.srcDirs = ['src']  
+                   renderscript.srcDirs = ['src']  
+                   res.srcDirs = ['res']
+                   assets.srcDirs = ['assets']  
+                   jniLibs.srcDirs = ['libs'] 
+               }  
+    }
+}
