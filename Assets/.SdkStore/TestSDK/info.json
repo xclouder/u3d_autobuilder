@@ -1,5 +1,0 @@
-{
-    "CopyRules": {
-        "Plugins/Android/deploy.m" : "deploy.m"
-    }
-}

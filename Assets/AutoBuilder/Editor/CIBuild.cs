@@ -43,20 +43,36 @@ public static class CIBuild{
 	}
 
 	#endregion
+	public static void CommandLIneBuild()
+	{
+		BuildTarget target = BuildTarget.Android;
+
+		if (EditorUserBuildSettings.activeBuildTarget != target){
+			EditorUserBuildSettings.SwitchActiveBuildTarget(target);
+		}
+
+		string[] scenes = GetBuildScenes();
+		string path = GetAndroidBuildPath();
+		if (scenes == null || scenes.Length == 0 || path == null)
+		{
+			Debug.LogError("Scene is empty, exit");
+			return;
+		}
+
+
+		
+	}
 
     public static void CommandLineBuildiOS(){
 		throw new System.NotImplementedException();
     }
 
     public static void CommandLineBuildAndroid(){
-        BuildTarget target = BuildTarget.Android;
+		BuildTarget target = BuildTarget.Android;
 
-        if (EditorUserBuildSettings.activeBuildTarget != target){
-           EditorUserBuildSettings.SwitchActiveBuildTarget(target);
-        }
-
-//	    JDK.EditorUtils.JDKMenus.Prebuild();
-//        Debug.Log("Command line build android version\n------------------\n------------------");
+		if (EditorUserBuildSettings.activeBuildTarget != target){
+			EditorUserBuildSettings.SwitchActiveBuildTarget(target);
+		}
 
         string[] scenes = GetBuildScenes();
         string path = GetAndroidBuildPath();
