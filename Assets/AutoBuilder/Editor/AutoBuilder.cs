@@ -13,16 +13,14 @@ using System.Collections;
 public class AutoBuilder
 {
 
-	public static bool UseJDKMenusBuild = false;
-
 	[MenuItem("Build/* Start Build Package",false,1019)]
 	public static void BuildPackage(){
-	if(EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android){
+		if(EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android){
 
-		CIBuild.BuildPackage (BuildTarget.Android,BuildOptions.AcceptExternalModificationsToPlayer);
-	}else{
-		CIBuild.BuildPackage (EditorUserBuildSettings.activeBuildTarget);
-	}
+			CIBuild.BuildPackage (BuildTarget.Android,BuildOptions.AcceptExternalModificationsToPlayer);
+		}else{
+			CIBuild.BuildPackage (EditorUserBuildSettings.activeBuildTarget);
+		}
 	}
 
 
@@ -39,20 +37,20 @@ public class AutoBuilder
 
 	[MenuItem("Build/Build For Platform/iOS",false,1020)]
 	public static void BuildiOSPackage(){
-	#if UNITY_5
+		#if UNITY_5
 		CIBuild.BuildPackage (BuildTarget.iOS);
-	#else
+		#else
 		CIBuild.BuildPackage (BuildTarget.iPhone);
-	#endif
+		#endif
 	}
 
 	[MenuItem("Build/Build For Platform/iOS", true, 1020)]
 	static bool ValidateBuildiOSPackage()
 	{
 		#if UNITY_5
-			return EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS;
+		return EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS;
 		#else
-			return EditorUserBuildSettings.activeBuildTarget == BuildTarget.iPhone;
+		return EditorUserBuildSettings.activeBuildTarget == BuildTarget.iPhone;
 		#endif
 	}
 
