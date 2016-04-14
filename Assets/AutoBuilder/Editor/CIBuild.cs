@@ -16,9 +16,9 @@ public static class CIBuild{
 
 	#region private
     private static string GetiOSBuildPath(){
-		string dirPath = Application.dataPath.TrimEnd("Assets");
-		dirPath += "builds";
-
+		string dirPath = Application.dataPath;
+		dirPath.Replace("Assets", "build");
+        Debug.LogWarning("Build Dir:" + dirPath);
         if (!Directory.Exists(dirPath)){
             Directory.CreateDirectory(dirPath);
         }
@@ -26,9 +26,8 @@ public static class CIBuild{
     }
 
 	private static string GetAndroidBuildPath(){
-		string dirPath = Application.dataPath.TrimEnd("Assets");
-		dirPath += "builds";
-
+		string dirPath = Application.dataPath;
+		dirPath.Replace("Assets", "build");
 		if (!Directory.Exists(dirPath)){
 			Directory.CreateDirectory(dirPath);
 		}
