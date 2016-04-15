@@ -61,7 +61,10 @@ public static class CIBuild{
 			EditorUserBuildSettings.SwitchActiveBuildTarget(target);
 		}
 
-		var p = Path.Combine(GetAndroidBuildPath(), PlayerSettings.productName + ".apk");
+		var fileName = PlayerSettings.productName + ".apk";
+		var p = Path.Combine(GetAndroidBuildPath(), fileName);
+
+		Debug.Log("android package path:" + p);
 		DoBuildPackage(BuildTarget.Android, p);
     }
 
