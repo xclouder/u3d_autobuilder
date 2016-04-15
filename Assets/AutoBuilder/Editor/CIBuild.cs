@@ -78,6 +78,8 @@ public static class CIBuild{
 		BuildPipeline.BuildPlayer(GetBuildScenes(), path, target, option);
 
 		Debug.Log("Build completed");
+
+        EditorApplication.Exit(0);
 	}
 
     public static void BuildPackage(BuildTarget target, BuildOptions option = BuildOptions.None){
