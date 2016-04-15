@@ -20,7 +20,7 @@ public static class CIBuild{
 		string dirPath = Application.dataPath;
 		DirectoryInfo f = new DirectoryInfo(dirPath);
 
-		dirPath = Path.Combine(f.Parent.FullName, "bulids");
+		dirPath = Path.Combine(f.Parent.FullName, "builds");
 		if (!Directory.Exists(dirPath)){
 			Directory.CreateDirectory(dirPath);
 		}
