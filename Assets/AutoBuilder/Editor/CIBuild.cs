@@ -20,12 +20,12 @@ public static class CIBuild{
 		string dirPath = Application.dataPath;
 		DirectoryInfo f = new DirectoryInfo(dirPath);
 
-		dirPath = f.Parent.FullName;
+		dirPath = Path.Combine(f.Parent.FullName, "bulids");
 		if (!Directory.Exists(dirPath)){
 			Directory.CreateDirectory(dirPath);
 		}
 
-		return Path.Combine(dirPath, "bulids");
+		return dirPath;
 	}
 
     private static string GetiOSBuildPath(){
