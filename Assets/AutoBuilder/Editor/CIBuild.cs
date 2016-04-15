@@ -17,25 +17,26 @@ public static class CIBuild{
 	#region private
     private static string GetiOSBuildPath(){
 		string dirPath = Application.dataPath;
-		dirPath = dirPath.Replace("Assets", "builds");
-        Debug.LogWarning("Build Dir:" + dirPath);
-        if (!Directory.Exists(dirPath)){
-            Directory.CreateDirectory(dirPath);
-        }
-        return Path.GetFullPath(dirPath);
-    }
+		DirectoryInfo f = new DirectoryInfo(dirPath);
 
-	private static string GetAndroidBuildPath(){
-		string dirPath = Application.dataPath;
-		dirPath = dirPath.Replace("Assets", "builds");
+		dirPath = f.Parent.Parent.FullName;
 		if (!Directory.Exists(dirPath)){
 			Directory.CreateDirectory(dirPath);
 		}
 
-		var fullPath = Path.GetFullPath(dirPath);
-		Debug.Log("Android Build Path:" + fullPath);
+		return dirPath;
+    }
 
-		return fullPath;
+	private static string GetAndroidBuildPath(){
+		string dirPath = Application.dataPath;
+		DirectoryInfo f = new DirectoryInfo(dirPath);
+
+		dirPath = f.Parent.Parent.FullName;
+		if (!Directory.Exists(dirPath)){
+			Directory.CreateDirectory(dirPath);
+		}
+
+		return dirPath;
 	}
 
 	private static string[] GetBuildScenes(){
