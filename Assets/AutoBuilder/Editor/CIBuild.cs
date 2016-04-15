@@ -15,28 +15,25 @@ public static class CIBuild{
     }
 
 	#region private
-    private static string GetiOSBuildPath(){
+	private static string GetPackageBuildPath()
+	{
 		string dirPath = Application.dataPath;
 		DirectoryInfo f = new DirectoryInfo(dirPath);
 
-		dirPath = f.Parent.Parent.FullName;
+		dirPath = f.Parent.FullName;
 		if (!Directory.Exists(dirPath)){
 			Directory.CreateDirectory(dirPath);
 		}
 
-		return dirPath;
+		return Path.Combine(dirPath, "bulids");
+	}
+
+    private static string GetiOSBuildPath(){
+		return GetPackageBuildPath();
     }
 
 	private static string GetAndroidBuildPath(){
-		string dirPath = Application.dataPath;
-		DirectoryInfo f = new DirectoryInfo(dirPath);
-
-		dirPath = f.Parent.Parent.FullName;
-		if (!Directory.Exists(dirPath)){
-			Directory.CreateDirectory(dirPath);
-		}
-
-		return dirPath;
+		return GetPackageBuildPath();
 	}
 
 	private static string[] GetBuildScenes(){
