@@ -15,12 +15,12 @@ public static class CIBuild{
     }
 
 	#region private
-	private static string GetPackageBuildPath()
+	private static string GetPackageBuildPath(string finalDirName = "builds")
 	{
 		string dirPath = Application.dataPath;
 		DirectoryInfo f = new DirectoryInfo(dirPath);
 
-		dirPath = Path.Combine(f.Parent.FullName, "builds");
+		dirPath = Path.Combine(f.Parent.FullName, finalDirName);
 		if (!Directory.Exists(dirPath)){
 			Directory.CreateDirectory(dirPath);
 		}
@@ -29,7 +29,7 @@ public static class CIBuild{
 	}
 
     private static string GetiOSBuildPath(){
-		return GetPackageBuildPath();
+		return GetPackageBuildPath("iosproj");
     }
 
 	private static string GetAndroidBuildPath(){
